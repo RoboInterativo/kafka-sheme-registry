@@ -10,7 +10,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker-1:
-    image: confluentinc/cp-enterprise-kafka:3.3.0
+    image: confluentinc/cp-kafka:3.3.0
+
     hostname: broker-1
     depends_on:
       - zookeeper
@@ -106,7 +107,8 @@ services:
       - POSTGRES_DB=sample
 
   kafka-manager:
-    image: trivadisbds/kafka-manager
+    image: intropro/kafka-manager
+      # trivadisbds/kafka-manager
     hostname: kafka-manager
     depends_on:
       - zookeeper
