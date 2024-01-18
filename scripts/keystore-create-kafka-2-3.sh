@@ -2,22 +2,8 @@
 
 cd /root/kafka-sheme-registry
 # Create server key & certificate signing request(.csr file)
-openssl req -new \
--newkey rsa:2048 \
--keyout ca.key \
--out ca.csr \
--config ca.cnf \
--nodes
-
-openssl x509 -req \
--days 3650 \
--in ca.csr \
--CA ca.crt \
--CAkey ca.key \
--CAcreateserial \
--out $i-creds/$i.crt \
--extfile $i-creds/$i.cnf \
--extensions v3_req
+openssl genrsa -out ca.key
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out ca.crt
 
 for i in kafka-2 kafka-3
 do
@@ -37,7 +23,7 @@ do
     -days 3650 \
     -in $i-creds/$i.csr \
     -CA ../ca.crt \
-    -CAkey ca.key \
+    -CAkey ../ca.key \
     -CAcreateserial \
     -out $i-creds/$i.crt \
     -extfile $i-creds/$i.cnf \
