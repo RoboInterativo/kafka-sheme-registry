@@ -1,6 +1,23 @@
 #!/bin/bash
 
 cd /root/kafka-sheme-registry
+# Create server key & certificate signing request(.csr file)
+openssl req -new \
+-newkey rsa:2048 \
+-keyout ca.key \
+-out ca.csr \
+-config ca.cnf \
+-nodes
+
+openssl x509 -req \
+-days 3650 \
+-in ca.csr \
+-CA ca.crt \
+-CAkey ca.key \
+-CAcreateserial \
+-out $i-creds/$i.crt \
+-extfile $i-creds/$i.cnf \
+-extensions v3_req
 
 for i in kafka-2 kafka-3
 do
@@ -19,35 +36,35 @@ do
     openssl x509 -req \
     -days 3650 \
     -in $i-creds/$i.csr \
-    -CA ca.crt \
+    -CA ../ca.crt \
     -CAkey ca.key \
     -CAcreateserial \
     -out $i-creds/$i.crt \
     -extfile $i-creds/$i.cnf \
     -extensions v3_req
 
-    # Convert server certificate to pkcs12 format
-    openssl pkcs12 -export \
-    -in $i-creds/$i.crt \
-    -inkey $i-creds/$i.key \
-    -chain \
-    -CAfile ca.pem \
-    -name $i \
-    -out $i-creds/$i.p12 \
-    -password pass:confluent
-
-    # Create server keystore
-    keytool -importkeystore \
-    -deststorepass confluent \
-    -destkeystore $i-creds/kafka.$i.keystore.pkcs12 \
-    -srckeystore $i-creds/$i.p12 \
-    -deststoretype PKCS12  \
-    -srcstoretype PKCS12 \
-    -noprompt \
-    -srcstorepass confluent
+    # # Convert server certificate to pkcs12 format
+    # openssl pkcs12 -export \
+    # -in $i-creds/$i.crt \
+    # -inkey $i-creds/$i.key \
+    # -chain \
+    # -CAfile ca.pem \
+    # -name $i \
+    # -out $i-creds/$i.p12 \
+    # -password pass:confluent
+		#
+    # # Create server keystore
+    # keytool -importkeystore \
+    # -deststorepass confluent \
+    # -destkeystore $i-creds/kafka.$i.keystore.pkcs12 \
+    # -srckeystore $i-creds/$i.p12 \
+    # -deststoretype PKCS12  \
+    # -srcstoretype PKCS12 \
+    # -noprompt \
+    # -srcstorepass confluent
 
     # Save creds
-    echo "confluent" > ${i}-creds/${i}_sslkey_creds
-    echo "confluent" > ${i}-creds/${i}_keystore_creds
+    # echo "confluent" > ${i}-creds/${i}_sslkey_creds
+    # echo "confluent" > ${i}-creds/${i}_keystore_creds
 
 done
