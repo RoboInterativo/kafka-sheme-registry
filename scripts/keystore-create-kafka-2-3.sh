@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ..
+cd /root/kafka-sheme-registry
 
 for i in kafka-2 kafka-3
 do
