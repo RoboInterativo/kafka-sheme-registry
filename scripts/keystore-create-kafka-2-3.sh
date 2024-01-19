@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /root/kafka-sheme-registry
+
 # Create server key & certificate signing request(.csr file)
 # openssl genrsa -out ca.key
 # openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt   -extfile ca.cnf
