@@ -12,21 +12,21 @@ do
     # Create server key & certificate signing request(.csr file)
     openssl req -new \
     -newkey rsa:2048 \
-    -keyout $i-creds/$i.key \
-    -out $i-creds/$i.csr \
-    -config $i-creds/$i.cnf \
+    -keyout $i.key \
+    -out $i.csr \
+    -config $i.cnf \
     -nodes
 
 
     # Sign server certificate with CA
     openssl x509 -req \
     -days 3650 \
-    -in $i-creds/$i.csr \
+    -in $i.csr \
     -CA ../ca.crt \
     -CAkey ../ca.key \
     -CAcreateserial \
-    -out $i-creds/$i.crt \
-    -extfile $i-creds/$i.cnf \
+    -out $i.crt \
+    -extfile $i.cnf \
     -extensions v3_req
 
     # # Convert server certificate to pkcs12 format
