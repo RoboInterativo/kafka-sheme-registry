@@ -69,7 +69,7 @@ services:
       - zk-1
       - kafka-1
     ports:
-      - "8081:8081"
+      - "8082:8082"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema_registry
       SCHEMA_REGISTRY_LISTENERS: 'https://0.0.0.0:8082'
