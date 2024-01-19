@@ -99,8 +99,8 @@ services:
     hostname: connect
     container_name: connect
     depends_on:
-      - zookeeper
-      - broker-1
+      - zk1
+      - kafka-1
       - schema_registry
     ports:
       - "8083:8083"
