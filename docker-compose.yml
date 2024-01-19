@@ -124,3 +124,7 @@ services:
       CONNECT_ZOOKEEPER_CONNECT: 'zk-1:12181'
     volumes:
       - ./kafka-connect:/etc/kafka-connect/jars
+volumes:
+  data-zk-log-1:
+  data-zk-data-1:
+  data-kafka-1:
