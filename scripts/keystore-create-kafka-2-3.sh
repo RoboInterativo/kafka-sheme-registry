@@ -34,7 +34,7 @@ do
     -in $i.crt \
     -inkey $i.key \
     -chain \
-    -CAfile ca.pem \
+    -CAfile ../ca.pem \
     -name $i \
     -out $i.p12 \
     -password pass:confluent
