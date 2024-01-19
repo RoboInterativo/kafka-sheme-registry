@@ -95,7 +95,7 @@ services:
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
 
   connect:
-    image: confluentuentinc/cp-kafka-connect:3.3.0
+    image: confluentinc/cp-kafka-connect:7.5.3
     hostname: connect
     container_name: connect
     depends_on:
