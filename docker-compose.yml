@@ -11,8 +11,8 @@ services:
     volumes:
       - data-zk-log-1:/var/lib/zookeeper/log
       - data-zk-data-1:/var/lib/zookeeper/data
-    networks:
-      - confluent
+    # networks:
+    #   - confluent
     environment:
       # - ZOOKEEPER_SERVER_ID=1
       - ZOOKEEPER_CLIENT_PORT=12181
@@ -60,7 +60,7 @@ services:
 
 
   schema_registry:
-    image: confluentinc/cp-schema-registry:3.3.0
+    image: confluentuentinc/cp-schema-registry:3.3.0
     hostname: schema_registry
     container_name: schema_registry
     depends_on:
@@ -76,14 +76,14 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_SECURITY_PROTOCOLschema_registry: SSL
       SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.keystore.jks
       SCHEMA_REGISTRY_SSL_KEYSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.keystore.jks
-      SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_PASSWORD: confluent
-      SCHEMA_REGISTRY_SSL_KEYSTORE_PASSWORD: $confluent
-      SCHEMA_REGISTRY_KAFKASTORE_SSL_KEY_PASSWORD: $confluent
-      SCHEMA_REGISTRY_SSL_KEY_PASSWORD: $confluent
+      SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_PASSWORD: confluentuent
+      SCHEMA_REGISTRY_SSL_KEYSTORE_PASSWORD: $confluentuent
+      SCHEMA_REGISTRY_KAFKASTORE_SSL_KEY_PASSWORD: $confluentuent
+      SCHEMA_REGISTRY_SSL_KEY_PASSWORD: $confluentuent
       SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.truststore.jks
       SCHEMA_REGISTRY_SSL_TRUSTSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.truststore.jks
-      SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_PASSWORD: confluent
-      SCHEMA_REGISTRY_SSL_TRUSTSTORE_PASSWORD:  confluent
+      SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_PASSWORD: confluentuent
+      SCHEMA_REGISTRY_SSL_TRUSTSTORE_PASSWORD:  confluentuent
       SCHEMA_REGISTRY_SCHEMA_REGISTRY_INTER_INSTANCE_PROTOCOL: https
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
       SCHEMA_REGISTRY_SSL_CLIENT_AUTH: 'true'
@@ -95,7 +95,7 @@ services:
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
 
   connect:
-    image: confluentinc/cp-kafka-connect:3.3.0
+    image: confluentuentinc/cp-kafka-connect:3.3.0
     hostname: connect
     container_name: connect
     depends_on:
@@ -115,9 +115,9 @@ services:
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
       CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER: io.confluentuent.connect.avro.AvroConverter
       CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: 'https://schema_registry:8081'
-      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER: io.confluentuent.connect.avro.AvroConverter
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: 'https://schema_registry:8081'
       CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
