@@ -21,7 +21,8 @@ services:
       # - ZOOKEEPER_SYNC_LIMIT=2
       # - ZOOKEEPER_SERVERS=zk-1:2888:3888;zk-2:2888:3888;zk-3:2888:3888
 
-
+    networks:
+      - confluent
   kafka-1:
     image: confluentinc/cp-server:7.1.1-1-ubi8
     restart: always
@@ -56,7 +57,8 @@ services:
       #KAFKA_SSL_TRUSTSTORE_CREDENTIALS: kafka-1_truststore_creds
       KAFKA_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: "HTTPS"
       #KAFKA_SSL_CLIENT_AUTH: "required"
-
+    networks:
+      - confluent
 
 
   schema_registry:
@@ -93,7 +95,8 @@ services:
 
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: '*'
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
-
+    networks:
+      - confluent
   connect:
     image: confluentinc/cp-kafka-connect:7.5.3
     hostname: connect
@@ -122,9 +125,13 @@ services:
       CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_ZOOKEEPER_CONNECT: 'zk-1:12181'
+    networks:
+      - confluent
     volumes:
       - ./kafka-connect:/etc/kafka-connect/jars
 volumes:
   data-zk-log-1:
   data-zk-data-1:
   data-kafka-1:
+networks:
+  confluent:
