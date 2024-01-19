@@ -30,8 +30,8 @@ services:
     ports:
       - "19092:19092"
       - "19093:19093"
-    networks:
-      - confluent
+    # networks:
+    #   - confluent
     volumes:
       - data-kafka-1:/var/lib/kafka/data
       - scripts:/etc/kafka/secrets
