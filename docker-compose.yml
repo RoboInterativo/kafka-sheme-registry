@@ -34,7 +34,7 @@ services:
     #   - confluent
     volumes:
       - data-kafka-1:/var/lib/kafka/data
-      - scripts:/etc/kafka/secrets
+      - ./scripts:/etc/kafka/secrets
     environment:
       KAFKA_BROKER_ID: 101
       KAFKA_ZOOKEEPER_CONNECT: zk-1:12181
