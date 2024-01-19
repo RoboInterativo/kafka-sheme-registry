@@ -5,7 +5,7 @@
 # openssl genrsa -out ca.key
 # openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt   -extfile ca.cnf
 
-for i in kafka-2 kafka-3
+for i in kafka-1 kafka-2 kafka-3
 do
 	echo "------------------------------- $i -------------------------------"
 
