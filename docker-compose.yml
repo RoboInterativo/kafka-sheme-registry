@@ -77,9 +77,9 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.keystore.jks
       SCHEMA_REGISTRY_SSL_KEYSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.keystore.jks
       SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_PASSWORD: confluentuent
-      SCHEMA_REGISTRY_SSL_KEYSTORE_PASSWORD: $confluentuent
-      SCHEMA_REGISTRY_KAFKASTORE_SSL_KEY_PASSWORD: $confluentuent
-      SCHEMA_REGISTRY_SSL_KEY_PASSWORD: $confluentuent
+      SCHEMA_REGISTRY_SSL_KEYSTORE_PASSWORD: confluentuent
+      SCHEMA_REGISTRY_KAFKASTORE_SSL_KEY_PASSWORD: confluentuent
+      SCHEMA_REGISTRY_SSL_KEY_PASSWORD: confluentuent
       SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.truststore.jks
       SCHEMA_REGISTRY_SSL_TRUSTSTORE_LOCATION: /etc/schema-registry/secrets/schema-registry.truststore.jks
       SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_PASSWORD: confluentuent
