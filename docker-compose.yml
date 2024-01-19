@@ -99,7 +99,7 @@ services:
     hostname: connect
     container_name: connect
     depends_on:
-      - zk1
+      - zk-1
       - kafka-1
       - schema_registry
     ports:
