@@ -53,20 +53,20 @@ services:
       - kafka2
       - zookeeper
 
-  producer:
-    build:
-      context: .
-      dockerfile: producer/Dockerfile
-    ports:
-      - 8080:8080
-    links:
-      - kafka-ui
-
-  consumer:
-    build:
-      context: .
-      dockerfile: consumer/Dockerfile
-    ports:
-      - 8081:8080
-    links:
-      - kafka-ui
+  # producer:
+  #   build:
+  #     context: .
+  #     dockerfile: producer/Dockerfile
+  #   ports:
+  #     - 8080:8080
+  #   links:
+  #     - kafka-ui
+  #
+  # consumer:
+  #   build:
+  #     context: .
+  #     dockerfile: consumer/Dockerfile
+  #   ports:
+  #     - 8081:8080
+  #   links:
+  #     - kafka-ui
