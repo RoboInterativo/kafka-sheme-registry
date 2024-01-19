@@ -29,28 +29,28 @@ do
     -extfile $i.cnf \
     -extensions v3_req
 
-    # # Convert server certificate to pkcs12 format
-    # openssl pkcs12 -export \
-    # -in $i-creds/$i.crt \
-    # -inkey $i-creds/$i.key \
-    # -chain \
-    # -CAfile ca.pem \
-    # -name $i \
-    # -out $i-creds/$i.p12 \
-    # -password pass:confluent
-		#
-    # # Create server keystore
-    # keytool -importkeystore \
-    # -deststorepass confluent \
-    # -destkeystore $i-creds/kafka.$i.keystore.pkcs12 \
-    # -srckeystore $i-creds/$i.p12 \
-    # -deststoretype PKCS12  \
-    # -srcstoretype PKCS12 \
-    # -noprompt \
-    # -srcstorepass confluent
+    # Convert server certificate to pkcs12 format
+    openssl pkcs12 -export \
+    -in $i.crt \
+    -inkey $i.key \
+    -chain \
+    -CAfile ca.pem \
+    -name $i \
+    -out $i.p12 \
+    -password pass:confluent
 
-    # Save creds
-    # echo "confluent" > ${i}-creds/${i}_sslkey_creds
-    # echo "confluent" > ${i}-creds/${i}_keystore_creds
+    # Create server keystore
+    keytool -importkeystore \
+    -deststorepass confluent \
+    -destkeystore kafka.$i.keystore.pkcs12 \
+    -srckeystore $i.p12 \
+    -deststoretype PKCS12  \
+    -srcstoretype PKCS12 \
+    -noprompt \
+    -srcstorepass confluent
+
+    Save creds
+    echo "confluent" > ${i}_sslkey_creds
+    echo "confluent" > ${i}_keystore_creds
 
 done
