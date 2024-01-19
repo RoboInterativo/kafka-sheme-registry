@@ -24,7 +24,7 @@ services:
     networks:
       - confluent
   kafka-1:
-    image: confluentinc/cp-server:7.1.1-1-ubi8
+    image: confluentinc/cp-kafka:7.1.1-1-ubi8
     restart: always
     container_name: kafka-1
     hostname: kafka-1
